@@ -1,0 +1,49 @@
+ <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Number Guess Game</title>
+  </head>
+  <body style="background-color: #0d1117; color: white; text-align: center; font-family: Arial; padding-top: 50px;">
+    
+    <h1 style="color: #ff6b00;">Number Guess Game 🎯</h1>
+    <p>1 se 10 ke beech number socho. Main guess karunga!</p>
+    
+    <h2 id="message" style="color: #00d9ff;">Number daal aur Check daba</h2>
+    
+    <input type="number" id="guess" placeholder="1-10" style="font-size: 20px; padding: 10px; width: 100px; text-align: center; border-radius: 5px;">
+    
+    <br><br>
+    <button onclick="checkGuess()" style="background-color: #00ff88; color: black; font-size: 20px; padding: 15px 30px; border: none; border-radius: 10px;">
+      Check Karo
+    </button>
+    
+    <p>Attempts: <span id="attempts">0</span></p>
+    
+    <p style="margin-top: 40px;">Made by Saurabh 💻</p>
+
+    <script>
+      let secretNumber = Math.floor(Math.random() * 10) + 1;
+      let attempts = 0;
+      
+      function checkGuess() {
+        let userGuess = document.getElementById('guess').value;
+        attempts = attempts + 1;
+        document.getElementById('attempts').innerText = attempts;
+        
+        if(userGuess == secretNumber){
+          document.getElementById('message').innerText = 'Sahi Jawab! 🎉 ' + attempts + ' try mein kar liya';
+          document.getElementById('message').style.color = '#00ff88';
+        }
+        else if(userGuess > secretNumber){
+          document.getElementById('message').innerText = 'Chota number soch 😅';
+          document.getElementById('message').style.color = '#ff6b00';
+        }
+        else{
+          document.getElementById('message').innerText = 'Bada number soch 😅';
+          document.getElementById('message').style.color = '#ff6b00';
+        }
+      }
+    </script>
+    
+  </body>
+</html>

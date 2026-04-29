@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body style="background-color: #0d1117; color: white; text-align: center; font-family: Arial; padding-top: 30px;">
+    
+    <h1 style="color: #ff6b00;">Rock Paper Scissors ✊✋✌️</h1>
+    <p>Computer ko hara ke dikha!</p>
+    
+    <h2 id="result" style="color: #00d9ff; margin: 30px;">Chuno apna move</h2>
+    
+    <button onclick="play('rock')" style="background-color: #ff6b00; color: white; font-size: 40px; padding: 15px; border: none; border-radius: 10px; margin: 10px;">
+      ✊
+    </button>
+    <button onclick="play('paper')" style="background-color: #00d9ff; color: white; font-size: 40px; padding: 15px; border: none; border-radius: 10px; margin: 10px;">
+      ✋
+    </button>
+    <button onclick="play('scissors')" style="background-color: #00ff88; color: black; font-size: 40px; padding: 15px; border: none; border-radius: 10px; margin: 10px;">
+      ✌️
+    </button>
+    
+    <h3 style="margin-top: 30px;">Computer: <span id="computer">?</span></h3>
+    <h3>Score - You: <span id="userScore">0</span> | PC: <span id="pcScore">0</span></h3>
+    
+    <br>
+    <button onclick="resetGame()" style="background-color: #ff4444; color: white; font-size: 16px; padding: 10px 20px; border: none; border-radius: 5px;">
+      Reset
+    </button>
+    
+    <p style="margin-top: 40px;">Made by Saurabh 💻</p>
+
+    <script>
+      let userScore = 0;
+      let pcScore = 0;
+      
+      function play(userChoice) {
+        let choices = ['rock', 'paper', 'scissors'];
+        let pcChoice = choices[Math.floor(Math.random() * 3)];
+        
+        let emoji = {rock: '✊', paper: '✋', scissors: '✌️'};
+        document.getElementById('computer').innerText = emoji[pcChoice];
+        
+        if(userChoice == pcChoice){
+          document.getElementById('result').innerText = 'Draw! 🤝';
+          document.getElementById('result').style.color = '#ff6b00';
+        }
+        else if(
+          (userChoice == 'rock' && pcChoice == 'scissors') ||
+          (userChoice == 'paper' && pcChoice == 'rock') ||
+          (userChoice == 'scissors' && pcChoice == 'paper')
+        ){
+          userScore = userScore + 1;
+          document.getElementById('result').innerText = 'You Win! 🎉';
+          document.getElementById('result').style.color = '#00ff88';
+        }
+        else{
+          pcScore = pcScore + 1;
+          document.getElementById('result').innerText = 'PC Wins! 💻';
+          document.getElementById('result').style.color = '#ff4444';
+        }
+        
+        document.getElementById('userScore').innerText = userScore;
+        document.getElementById('pcScore').innerText = pcScore;
+      }
+      
+      function resetGame() {
+        userScore = 0;
+        pcScore = 0;
+        document.getElementById('userScore').innerText = 0;
+        document.getElementById('pcScore').innerText = 0;
+        document.getElementById('computer').innerText = '?';
+        document.getElementById('result').innerText = 'Chuno apna move';
+        document.getElementById('result').style.color = '#00d9ff';
+      }
+    </script>
+    
+  </body>
+</html>
