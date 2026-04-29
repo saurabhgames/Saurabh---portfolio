@@ -1,21 +1,50 @@
- <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Saurabh's Portfolio</title>
-  </head>
-  <body style="background-color: #0d1117; color: white; text-align: center; font-family: Arial;">
+ <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Click Master Game</title>
+</head>
+<body style="background-color: #0d1117; color: white; font-family: Arial; text-align: center; padding-top: 50px;">
+  
+  <h1 style="color: #ff6b00;">Click Master 🔥</h1>
+  <p>Jitna ho sake utna click kar 10 second mein!</p>
+  
+  <h2 id="score" style="font-size: 50px; color: #00d9ff;">0</h2>
+  <p id="timer">Time: 10</p>
+  
+  <button onclick="startGame()" id="btn" style="background-color: #ff6b00; color: white; padding: 20px 40px; font-size: 20px; border: none; border-radius: 10px; cursor: pointer;">START</button>
+  
+  <br><br>
+  <a href="index.html" style="color: #00d9ff;">← Back to Portfolio</a>
+
+  <script>
+    let score = 0;
+    let time = 10;
+    let gameOn = false;
     
-    <h1 style="color: #ff6b00;">Hi, main Saurabh hun 👋</h1>
-    <p>Main Web Game Developer ban raha hun</p>
-    
-    <h2 style="color: #00d9ff; margin-top: 50px;">Mere Games:</h2>
-    
-    <a href="index.html" style="color: #00ff88; font-size: 20px;">1. Click Master Game</a><br><br>
-    <a href="guess.html" style="color: #00ff88; font-size: 20px;">2. Number Guess Game</a><br><br>
-    <p style="color: gray;">3. Rock Paper Scissors - Coming Soon</p>
-    
-    <h3 style="margin-top: 50px;">Contact:</h3>
-    <p>Game chahiye? WhatsApp karo</p>
-    
-  </body>
+    function startGame() {
+      if (gameOn) {
+        score++;
+        document.getElementById("score").innerHTML = score;
+      } else {
+        score = 0;
+        time = 10;
+        gameOn = true;
+        document.getElementById("score").innerHTML = "0";
+        document.getElementById("btn").innerHTML = "CLICK ME!";
+        
+        let timer = setInterval(function() {
+          time--;
+          document.getElementById("timer").innerHTML = "Time: " + time;
+          if (time == 0) {
+            clearInterval(timer);
+            gameOn = false;
+            document.getElementById("btn").innerHTML = "Play Again";
+            alert("Game Over! Tumhara Score: " + score);
+          }
+        }, 1000);
+      }
+    }
+  </script>
+</body>
 </html>
